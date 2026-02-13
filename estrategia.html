@@ -1,0 +1,770 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Comunidade Lucrativa — Estrutura Técnica & Execução (Oferta Limitada)</title>
+  <meta name="description" content="Landing + Funil + Automação + Hospedagem segura + LGPD + Bot WhatsApp + Execução do lançamento em 21 dias. " />
+  <style>
+    :root{
+      --bg:#07060a;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.08);
+      --stroke: rgba(255,255,255,.12);
+      --text: rgba(255,255,255,.90);
+      --muted: rgba(255,255,255,.65);
+      --muted2: rgba(255,255,255,.45);
+      --accent:#8b5cf6;
+      --accent2:#a78bfa;
+      --good:#34d399;
+      --warn:#fbbf24;
+      --bad:#fb7185;
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
+      --radius: 18px;
+      --radius2: 26px;
+      --max: 1040px;
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--font);
+      color:var(--text);
+      background:
+        radial-gradient(1200px 700px at 20% 0%, rgba(139,92,246,.28), transparent 55%),
+        radial-gradient(900px 600px at 90% 18%, rgba(167,139,250,.18), transparent 55%),
+        radial-gradient(900px 600px at 45% 105%, rgba(139,92,246,.18), transparent 60%),
+        var(--bg);
+      overflow-x:hidden;
+    }
+
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding:20px 16px 90px}
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(to bottom, rgba(7,6,10,.85), rgba(7,6,10,.35));
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .topbar .inner{
+      max-width:var(--max); margin:0 auto;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:12px 16px;
+    }
+    .brand{
+      display:flex; gap:10px; align-items:center;
+      letter-spacing:.3px;
+    }
+    .logo{
+      width:34px; height:34px; border-radius:12px;
+      background: radial-gradient(circle at 30% 20%, rgba(255,255,255,.35), transparent 35%),
+                  linear-gradient(135deg, rgba(139,92,246,.95), rgba(167,139,250,.55));
+      box-shadow: 0 12px 40px rgba(139,92,246,.25);
+      border: 1px solid rgba(255,255,255,.18);
+    }
+    .brand strong{font-weight:800}
+    .chip{
+      font-size:12px;
+      padding:7px 10px;
+      border-radius:999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.78);
+    }
+    .ctaRow{display:flex; gap:10px; align-items:center}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding:12px 14px;
+      border-radius:999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      box-shadow: 0 12px 35px rgba(0,0,0,.25);
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+      font-weight:650;
+      font-size:14px;
+    }
+    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.085); border-color: rgba(255,255,255,.22)}
+    .btn.primary{
+      border-color: rgba(139,92,246,.55);
+      background: linear-gradient(135deg, rgba(139,92,246,.95), rgba(167,139,250,.70));
+      color: #0a0710;
+      box-shadow: 0 18px 55px rgba(139,92,246,.28);
+    }
+    .btn.primary:hover{transform: translateY(-1px); filter:saturate(1.05)}
+    .icon{
+      width:18px; height:18px; display:inline-block; flex:0 0 auto;
+      filter: drop-shadow(0 8px 22px rgba(0,0,0,.35));
+    }
+
+    .hero{
+      padding:26px 0 8px;
+    }
+    .gridHero{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:16px;
+      align-items:stretch;
+    }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .card::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(900px 320px at 20% 20%, rgba(139,92,246,.18), transparent 55%);
+      pointer-events:none;
+    }
+    .card > .pad{position:relative; padding:18px}
+
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      font-size:12px;
+      color: rgba(255,255,255,.72);
+      letter-spacing:.18em;
+      text-transform:uppercase;
+    }
+    .kdot{
+      width:8px; height:8px; border-radius:99px;
+      background: var(--accent);
+      box-shadow: 0 0 0 5px rgba(139,92,246,.18);
+    }
+
+    h1{
+      margin:12px 0 10px;
+      font-size: clamp(28px, 6vw, 44px);
+      line-height:1.06;
+      letter-spacing:-.02em;
+    }
+    .sub{
+      color: var(--muted);
+      font-size: 15px;
+      line-height:1.55;
+      margin:0 0 14px;
+    }
+
+    .badges{
+      display:flex; flex-wrap:wrap; gap:10px;
+      margin-top:14px;
+    }
+    .badge{
+      display:flex; align-items:center; gap:10px;
+      padding:10px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      color: rgba(255,255,255,.82);
+      font-size: 13px;
+      white-space:nowrap;
+    }
+    .badge b{color:#fff}
+    .badge .dot{
+      width:10px; height:10px; border-radius:99px;
+      background: rgba(52,211,153,.95);
+      box-shadow: 0 0 0 6px rgba(52,211,153,.14);
+    }
+
+    .pricing{
+      display:grid;
+      gap:12px;
+    }
+    .priceBox{
+      background: linear-gradient(180deg, rgba(139,92,246,.20), rgba(255,255,255,.05));
+      border: 1px solid rgba(139,92,246,.35);
+      border-radius: var(--radius2);
+      box-shadow: 0 20px 70px rgba(139,92,246,.18);
+      overflow:hidden;
+      position:relative;
+    }
+    .priceBox::after{
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(900px 420px at 70% 0%, rgba(167,139,250,.22), transparent 55%);
+      pointer-events:none;
+    }
+    .priceBox .pad{position:relative; padding:18px}
+    .row{
+      display:flex; align-items:baseline; justify-content:space-between; gap:12px;
+      flex-wrap:wrap;
+    }
+    .strike{
+      color: rgba(255,255,255,.55);
+      text-decoration: line-through;
+      font-weight:650;
+      font-size:13px;
+    }
+    .price{
+      display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;
+    }
+    .price .now{
+      font-size:34px;
+      font-weight:900;
+      letter-spacing:-.03em;
+      color:#fff;
+    }
+    .price .unit{
+      color: rgba(255,255,255,.75);
+      font-weight:650;
+      font-size:13px;
+    }
+    .deadline{
+      margin-top:10px;
+      display:flex; gap:10px; flex-wrap:wrap;
+    }
+    .timer{
+      flex:1 1 auto;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:12px 12px;
+      border-radius: 16px;
+      background: rgba(0,0,0,.25);
+      border: 1px solid rgba(255,255,255,.12);
+      color: rgba(255,255,255,.88);
+      font-weight:700;
+    }
+    .timer small{display:block; font-weight:650; color: rgba(255,255,255,.62)}
+    .mini{
+      font-size:12px;
+      color: rgba(255,255,255,.68);
+      line-height:1.5;
+      margin-top:10px;
+    }
+
+    .section{
+      margin-top:16px;
+    }
+    .secTitle{
+      font-size:16px;
+      margin:0 0 10px;
+      letter-spacing:-.01em;
+    }
+    .list{
+      display:grid;
+      gap:10px;
+    }
+    .item{
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 16px;
+      padding:12px 12px;
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+    }
+    .iIcon{
+      width:38px; height:38px; border-radius:14px;
+      background: rgba(139,92,246,.18);
+      border: 1px solid rgba(139,92,246,.25);
+      display:flex; align-items:center; justify-content:center;
+      flex:0 0 auto;
+      box-shadow: 0 18px 55px rgba(139,92,246,.10);
+    }
+    .item h3{
+      margin:0;
+      font-size:14px;
+      letter-spacing:-.01em;
+    }
+    .item p{
+      margin:6px 0 0;
+      color: var(--muted);
+      font-size:13px;
+      line-height:1.5;
+    }
+
+    .split{
+      display:grid;
+      gap:12px;
+      margin-top:16px;
+    }
+
+    .pillrow{display:flex; flex-wrap:wrap; gap:10px; margin-top:10px}
+    .pill{
+      font-size:12px;
+      padding:9px 10px;
+      border-radius:999px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.10);
+      color: rgba(255,255,255,.74);
+    }
+    .pill b{color:#fff}
+
+    .timeline{
+      display:grid;
+      gap:10px;
+    }
+    .step{
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.11);
+      background: rgba(255,255,255,.05);
+      padding:12px;
+      display:flex; gap:10px; align-items:flex-start;
+    }
+    .n{
+      width:28px; height:28px; border-radius:999px;
+      background: rgba(139,92,246,.22);
+      border:1px solid rgba(139,92,246,.35);
+      display:flex; align-items:center; justify-content:center;
+      font-weight:900;
+      color:#fff;
+      flex:0 0 auto;
+    }
+    .step strong{display:block; font-size:13px}
+    .step span{display:block; color: var(--muted); font-size:13px; line-height:1.45; margin-top:4px}
+
+    .footer{
+      margin-top:18px;
+      color: rgba(255,255,255,.55);
+      font-size:12px;
+      line-height:1.55;
+      padding:14px 2px 0;
+    }
+    .footline{
+      display:flex; gap:8px; flex-wrap:wrap; align-items:center; justify-content:space-between;
+      border-top: 1px solid rgba(255,255,255,.10);
+      padding-top:14px;
+      margin-top:14px;
+    }
+    .sig{
+      display:flex; align-items:center; gap:10px;
+      color: rgba(255,255,255,.70);
+    }
+    .sig .miniLogo{
+      width:26px; height:26px; border-radius:10px;
+      background: linear-gradient(135deg, rgba(139,92,246,.95), rgba(167,139,250,.55));
+      border: 1px solid rgba(255,255,255,.16);
+      box-shadow: 0 14px 45px rgba(139,92,246,.18);
+    }
+
+    /* Desktop enhancement (still mobile-first) */
+    @media (min-width: 920px){
+      .wrap{padding:24px 16px 90px}
+      .gridHero{grid-template-columns: 1.25fr .75fr; gap:16px}
+      .split{grid-template-columns: 1fr 1fr; gap:12px}
+    }
+
+    /* subtle animations */
+    @media (prefers-reduced-motion: no-preference){
+      .card,.priceBox,.item,.step{animation: floatIn .55s ease both}
+      .item:nth-child(2){animation-delay:.05s}
+      .item:nth-child(3){animation-delay:.10s}
+      .item:nth-child(4){animation-delay:.15s}
+      .step:nth-child(2){animation-delay:.06s}
+      .step:nth-child(3){animation-delay:.12s}
+      .step:nth-child(4){animation-delay:.18s}
+      .step:nth-child(5){animation-delay:.24s}
+      @keyframes floatIn{
+        from{opacity:0; transform: translateY(10px)}
+        to{opacity:1; transform: translateY(0)}
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="inner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <div style="font-size:13px; color: rgba(255,255,255,.80); line-height:1.15;">
+            <strong>Comunidade Lucrativa</strong>
+          </div>
+          <div style="font-size:12px; color: rgba(255,255,255,.55); margin-top:1px;">
+            Estrutura técnica + execução do lançamento
+          </div>
+        </div>
+      </div>
+      <div class="ctaRow">
+        <span class="chip" id="offerChip">Documentação hospedada - Luna Hosting</span>
+        <a class="btn primary" href="#contratar">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M21 8.5V18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M3.5 8.5 12 13.5l8.5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6 6h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          Ver proposta
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="gridHero">
+        <div class="card">
+          <div class="pad">
+            <div class="kicker"><span class="kdot"></span> Documento técnico de aquisição</div>
+            <h1>Infraestrutura + Funil + Automação<br/>para o lançamento da <span style="color:var(--accent2)">Comunidade Lucrativa</span></h1>
+            <p class="sub">
+              O objetivo não é “só uma landing page”. É montar uma base que sustenta o crescimento:
+              <b>captação</b>, <b>conversão</b>, <b>follow-up automático</b>, <b>organização da produção</b> e <b>dados</b> —
+              tudo com rastreio e segurança para escalar sem depender de esforço humano.
+            </p>
+
+            <div class="badges">
+              <div class="badge"><span class="dot"></span> <b>21 dias</b> de lançamento com execução organizada</div>
+              <div class="badge"><span class="dot"></span> Conteúdo em lotes (5–10) + revisão sem caos no WhatsApp</div>
+              <div class="badge"><span class="dot"></span> Follow-up automático (30min / D+1 / reativação)</div>
+            </div>
+
+            <div class="section">
+              <h2 class="secTitle">O que foi alinhado na reunião (pontos-chave)</h2>
+              <div class="list">
+                <div class="item">
+                  <div class="iIcon" aria-hidden="true">🎯</div>
+                  <div>
+                    <h3>Landing page (página de vendas) + vídeo de apresentação</h3>
+                    <p>Estrutura focada em conversão: vídeo, prova social, CTA, captura e roteamento para checkout (Hotmart) ou funil próprio.</p>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="iIcon" aria-hidden="true">📲</div>
+                  <div>
+                    <h3>Conteúdo diário (vídeos curtos de conscientização)</h3>
+                    <p>Produção em blocos (5 por vez), padronização, identidade visual do projeto e consistência para aquecer a base.</p>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="iIcon" aria-hidden="true">🤖</div>
+                  <div>
+                    <h3>Automação (Instagram DM + WhatsApp) para vender sem “mão humana”</h3>
+                    <p>Fluxos que qualificam, recuperam, lembram e direcionam o lead. Quando não responde: recontato automático (30 min / próximo dia).</p>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="iIcon" aria-hidden="true">🧩</div>
+                  <div>
+                    <h3>Operação organizada (Trello + Drive + status)</h3>
+                    <p>Fila de tarefas: recebido → editando → editado → correção. Menos conversa, mais entrega. Isso é escala.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+       <aside class="pricing" id="contratar">
+  <div class="priceBox">
+    <div class="pad">
+
+      <div class="kicker">
+        <span class="kdot"></span> Aquisição Estratégica
+      </div>
+
+      <div class="row" style="margin-top:14px;">
+        <div>
+          <div class="price">
+            <div class="now">R$ 1.500,00</div>
+            <div class="unit">pagamento único • ativação completa da estrutura</div>
+          </div>
+        </div>
+      </div>
+
+      <p class="mini" style="margin-top:14px;">
+        Valor estimado às <b>01:02 da madrugada do dia 13/02/2026</b>,
+        no momento da formalização deste documento estratégico.
+      </p>
+
+      <p class="mini">
+        Este valor considera o cenário atual de ferramentas, servidores,
+        provisionamento de infraestrutura e fila de implantação.
+      </p>
+
+      <p class="mini">
+        Por se tratar de custos variáveis (infraestrutura, licenças e capacidade técnica),
+        este valor pode ser ajustado a qualquer momento.
+      </p>
+
+      <div class="pillrow" style="margin-top:16px;">
+        <div class="pill"><b>Inclui</b> mão de obra</div>
+        <div class="pill"><b>Inclui</b> 2 servidores</div>
+        <div class="pill"><b>Inclui</b> LGPD & segurança</div>
+        <div class="pill"><b>Inclui</b> automações iniciais</div>
+      </div>
+
+      <div style="display:grid; gap:10px; margin-top:18px;">
+        <button class="btn primary" onclick="copiarPix()">
+          Copiar chave PIX
+        </button>
+        <a class="btn" href="#escopo">Ver escopo técnico</a>
+      </div>
+
+      <p class="mini" style="margin-top:14px;">
+        A confirmação garante a reserva imediata dos recursos técnicos
+        e início do cronograma estimado de até 31 dias.
+      </p>
+
+      <p class="mini" style="margin-top:8px;">
+        <b>PIX (CNPJ):</b> 63.472.638/0001-45
+      </p>
+
+    </div>
+  </div>
+</aside>
+    <section class="split" id="escopo">
+      <div class="card">
+        <div class="pad">
+          <div class="kicker"><span class="kdot"></span> Escopo técnico (infraestrutura)</div>
+          <h2 class="secTitle" style="font-size:18px; margin-top:10px;">2 servidores dedicados (separação por responsabilidade)</h2>
+
+          <div class="list">
+            <div class="item">
+              <div class="iIcon" aria-hidden="true">🖥️</div>
+              <div>
+                <h3>Servidor #1 — Landing Page + Funil + Dados</h3>
+                <p>
+                  Hospedagem segura em nuvem para a página de vendas (landing page), assets e serviços de captação.
+                  Inclui armazenamento de dados de funil (ex.: leads, tags, status) com controle de acesso e backups.
+                </p>
+                <div class="pillrow">
+                  <div class="pill"><b>Inclui</b> SSL / HTTPS</div>
+                  <div class="pill"><b>Inclui</b> logs</div>
+                  <div class="pill"><b>Inclui</b> backup</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="iIcon" aria-hidden="true">⚙️</div>
+              <div>
+                <h3>Servidor #2 — Automação (n8n / Notion Automation / fluxos) + Bot WhatsApp</h3>
+                <p>
+                  Hospedagem do motor de automação para tarefas e integrações (ex.: n8n), com rotinas de follow-up,
+                  sincronização de listas, avisos internos e orquestração do bot de WhatsApp.
+                  Separar o servidor de automação do servidor do site reduz risco operacional e melhora estabilidade.
+                </p>
+                <div class="pillrow">
+                  <div class="pill"><b>Inclui</b> rotinas</div>
+                  <div class="pill"><b>Inclui</b> webhooks</div>
+                  <div class="pill"><b>Inclui</b> integrações</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="iIcon" aria-hidden="true">🔒</div>
+              <div>
+                <h3>Dados & Segurança — alinhado à LGPD</h3>
+                <p>
+                  Estrutura orientada à proteção de dados pessoais (LGPD), com boas práticas: minimização de dados,
+                  controle de acesso, auditoria, armazenamento seguro e rotinas de retenção.
+                  (Políticas e compliance completo dependem também do processo interno e da forma de coleta/uso.)
+                </p>
+                <div class="pillrow">
+                  <div class="pill"><b>Boas práticas</b> de privacidade</div>
+                  <div class="pill"><b>Controle</b> de acesso</div>
+                  <div class="pill"><b>Auditoria</b> e logs</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="pad">
+          <div class="kicker"><span class="kdot"></span> Execução (o que destrava resultado)</div>
+          <h2 class="secTitle" style="font-size:18px; margin-top:10px;">Playbook de lançamento (o que a reunião já desenhou)</h2>
+
+          <div class="timeline">
+            <div class="step">
+              <div class="n">1</div>
+              <div>
+                <strong>Identidade do projeto + padrão visual</strong>
+                <span>Organizar a comunicação (sem “cara de IA genérica”): fotos humanas, bastidores reais, estética coerente.</span>
+              </div>
+            </div>
+            <div class="step">
+              <div class="n">2</div>
+              <div>
+                <strong>Conteúdo em lotes (5–10) + pipeline no Trello</strong>
+                <span>Menos conversa no WhatsApp, mais previsibilidade: recebido → editando → editado → correção → publicado.</span>
+              </div>
+            </div>
+            <div class="step">
+              <div class="n">3</div>
+              <div>
+                <strong>Captação e conversão (Hotmart + landing opcional)</strong>
+                <span>Começar simples (checkout bem configurado) e evoluir para landing completa com tracking e prova social.</span>
+              </div>
+            </div>
+            <div class="step">
+              <div class="n">4</div>
+              <div>
+                <strong>Automação que “faz o impossível”</strong>
+                <span>Fluxos que chamam o lead no timing certo (30min / D+1) e guiam até a compra — sem depender de humano.</span>
+              </div>
+            </div>
+            <div class="step">
+              <div class="n">5</div>
+              <div>
+                <strong>Escada de valor (Comunidade → Mentoria → Afiliados)</strong>
+                <span>Prova social gera mentoria; afiliados ampliam alcance; a infraestrutura garante repetição e escala.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h2 class="secTitle">Onde a Mindiverse cresce “junto” (sutil e inevitável)</h2>
+            <div class="list">
+              <div class="item">
+                <div class="iIcon" aria-hidden="true">📈</div>
+                <div>
+                  <h3>Relatórios e números do funil (sem achismo)</h3>
+                  <p>Quando o caixa entra, a diferença é medir: CTR, conversão, abandono, reativação e ROI por campanha/canal.</p>
+                </div>
+              </div>
+              <div class="item">
+                <div class="iIcon" aria-hidden="true">🧠</div>
+                <div>
+                  <h3>Automação por etapas (crescimento modular)</h3>
+                  <p>Começa com follow-up e organização. Depois: segmentação, afiliados, réguas de relacionamento e upsell para mentoria.</p>
+                </div>
+              </div>
+              <div class="item">
+                <div class="iIcon" aria-hidden="true">🧱</div>
+                <div>
+                  <h3>Playbook replicável (10–15 experts)</h3>
+                  <p>O sonho citado na reunião vira método. A Mindiverse vira a “base operacional” que permite repetir o modelo em novos experts.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="card" style="margin-top:16px;">
+      <div class="pad">
+        <div class="kicker"><span class="kdot"></span> Entregáveis (o que está incluso em R$ 1.500,00)</div>
+        <h2 class="secTitle" style="font-size:18px; margin-top:10px;">Pacote Estrutura Completa (promo até 15/02/2026)</h2>
+
+        <div class="split">
+          <div class="list">
+            <div class="item">
+              <div class="iIcon" aria-hidden="true">🧩</div>
+              <div>
+                <h3>Landing Page (página de vendas) focada em conversão</h3>
+                <p>Estrutura premium, vídeo, CTA, seções de valor, prova social e integração com checkout (Hotmart) e/ou captura de lead.</p>
+              </div>
+            </div>
+            <div class="item">
+              <div class="iIcon" aria-hidden="true">🗃️</div>
+              <div>
+                <h3>Banco de dados do funil (armazenamento seguro)</h3>
+                <p>Leads, tags e eventos do funil armazenados em nuvem com controle de acesso e boas práticas de privacidade (LGPD).</p>
+              </div>
+            </div>
+            <div class="item">
+              <div class="iIcon" aria-hidden="true">🔁</div>
+              <div>
+                <h3>Automação de tarefas (n8n / Notion Automation / integrações)</h3>
+                <p>Rotinas para organizar produção, disparar alertas, registrar status e acionar follow-ups automaticamente.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="list">
+            <div class="item">
+              <div class="iIcon" aria-hidden="true">💬</div>
+              <div>
+                <h3>Hospedagem do bot de WhatsApp (junto das automações)</h3>
+                <p>Camada de comunicação integrada aos fluxos: reengajamento, atendimento inicial, roteamento e suporte.</p>
+              </div>
+            </div>
+            <div class="item">
+              <div class="iIcon" aria-hidden="true">🧰</div>
+              <div>
+                <h3>Provisionamento + configuração técnica</h3>
+                <p>Setup, deploy, SSL, logs, backup e estrutura de estabilidade (separação por servidor).</p>
+              </div>
+            </div>
+            <div class="item">
+              <div class="iIcon" aria-hidden="true">👷</div>
+              <div>
+                <h3>Mão de obra inclusa</h3>
+                <p>Implantação e ajustes iniciais para colocar o projeto no ar dentro do timing do lançamento (21 dias).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer">
+          <div class="footline">
+            <div class="sig">
+              <div class="miniLogo" aria-hidden="true"></div>
+              <div>
+                <div style="font-weight:850; color:#fff;">Stack & Automations by Mindiverse</div>
+                <div style="color: rgba(255,255,255,.55); font-size:12px;">Infraestrutura discreta, crescimento junto, execução previsível.</div>
+              </div>
+            </div>
+            <div style="text-align:right;">
+              <div style="color: rgba(255,255,255,.55); font-size:12px;">Janela de eventos</div>
+              <div style="font-weight:900; color:#fff;">Documentação hospedada Luna-Hosting</div>
+            </div>
+          </div>
+          <p style="margin:12px 0 0;">
+            Observação: este material descreve componentes técnicos e boas práticas. Para conformidade total com a LGPD,
+            recomenda-se também política de privacidade, termos e processos internos alinhados.
+          </p>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Timer: oferta válida até 15/02/2026 23:59:59 no fuso -03:00 (America/Sao_Paulo)
+    // Construímos a data com offset explícito para evitar diferenças de navegador.
+    const deadline = new Date("2026-02-15T23:59:59-03:00").getTime();
+
+    const timerEl = document.getElementById("timerText");
+    const chipEl = document.getElementById("offerChip");
+
+    function pad(n){ return String(n).padStart(2,"0"); }
+
+    function tick(){
+      const now = Date.now();
+      const diff = deadline - now;
+
+      if(diff <= 0){
+        timerEl.textContent = "Oferta encerrada — preço atual: R$ 2.250,00";
+        chipEl.textContent = "Oferta encerrada";
+        chipEl.style.borderColor = "rgba(251,113,133,.55)";
+        chipEl.style.background = "rgba(251,113,133,.12)";
+        chipEl.style.color = "rgba(255,255,255,.85)";
+        return;
+      }
+
+      const totalSeconds = Math.floor(diff / 1000);
+      const days = Math.floor(totalSeconds / (3600*24));
+      const hours = Math.floor((totalSeconds % (3600*24)) / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = totalSeconds % 60;
+
+      timerEl.textContent = `${days}d ${pad(hours)}h ${pad(minutes)}m ${pad(seconds)}s`;
+    }
+
+    tick();
+    setInterval(tick, 1000);
+  </script>
+  <script>
+function copiarPix() {
+  const chave = "63.472.638/0001-45";
+  navigator.clipboard.writeText(chave);
+  alert("Chave PIX copiada:\n\n" + chave);
+}
+</script>
+</body>
+</html>
